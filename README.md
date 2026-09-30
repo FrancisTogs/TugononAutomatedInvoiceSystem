@@ -1,47 +1,60 @@
-# Svelte + TS + Vite
+# 🏗️ Automated Invoicing and Transaction Tracking System
+> **Client / Organization:** Tugonon Construction Services  
+> **Tech Stack:** Svelte 5 (TypeScript) + Go (Golang) + MySQL  
 
-This template should help get you started developing with Svelte and TypeScript in Vite.
+---
 
-## Recommended IDE Setup
+## 📌 System Overview
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+The **Automated Invoicing and Transaction Tracking System** is an enterprise-grade full-stack web application designed for **Tugonon Construction Services**[cite: 9]. It automates and streamlines client order tracking, project quotation preparation, tax and discount calculations, sequential invoice generation, payment monitoring, and official receipt issuance[cite: 9].
 
-## Need an official Svelte framework?
+The system features strict **Role-Based Access Control (RBAC)** to separate operational duties between **Admin/Sales** personnel and **Finance/Accounting** personnel.
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+---
 
-## Technical considerations
+## ✨ Features by Module & Role
 
-**Why use this over SvelteKit?**
+### 👥 Admin / Sales Module
+* **Client Management (`ClientManager.svelte`):** Register new client accounts, search client records, and manage billing contact information[cite: 9, 10].
+* **Orders & Requests (`OrderManager.svelte`):** Record client project requests, track site locations, estimate budgets, and manage project statuses (`New`, `Quotation Created`, `In Progress`, `Completed`)[cite: 9, 10].
+* **Project Quotations (`QuotationForm.svelte`):** Build detailed project quotations with dynamic line-item calculators, unit costs, automatic VAT estimations, and target completion dates[cite: 9, 10, 12].
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
+### 💳 Finance / Accounting Module
+* **Invoice Management (`InvoiceManager.svelte`):** Convert approved quotations into formal invoices, auto-generate sequential invoice numbers (e.g., `INV-2026-015`), and calculate discounts and withholding tax rates (BIR 2307)[cite: 9, 10, 11].
+* **Payment Status Monitoring (`PaymentStatus.svelte`):** Track invoice payment statuses (`Paid`, `Partial`, `Unpaid`, `Overdue`) and record partial or full client payments[cite: 9, 10].
+* **Official Receipts (`OfficialReceipts.svelte`):** Generate and issue formal Official Receipts (`OR-2026-001`) with amount-in-words formatting and printable certificate layouts[cite: 9, 10].
 
-This template contains as little as possible to get started with Vite + TypeScript + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
+---
 
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
+## 🛠️ Tech Stack
 
-**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
+* **Frontend:** Svelte 5 (TypeScript), HTML5, CSS3 (Dark Theme Workspace)
+* **Backend:** Go (Golang) with REST API architecture and `net/http`
+* **Database:** MySQL (Third Normal Form / 3NF relational design)[cite: 9, 10]
 
-Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
+---
 
-**Why include `.vscode/extensions.json`?**
+## 📁 Repository Structure
 
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
-
-**Why enable `allowJs` in the TS template?**
-
-While `allowJs: false` would indeed prevent the use of `.js` files in the project, it does not prevent the use of JavaScript syntax in `.svelte` files. In addition, it would force `checkJs: false`, bringing the worst of both worlds: not being able to guarantee the entire codebase is TypeScript, and also having worse typechecking for the existing JavaScript. In addition, there are valid use cases in which a mixed codebase may be relevant.
-
-**Why is HMR not preserving my local component state?**
-
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/rixo/svelte-hmr#svelte-hmr).
-
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
-
-```ts
-// store.ts
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
-```
+```text
+tugonon-invoicing-system/
+│
+├── backend/                       # Go REST API Backend
+│   ├── main.go                    # Go entry point & HTTP routes
+│   ├── schema.sql                 # MySQL relational schema (3NF)
+│   ├── go.mod
+│   └── go.sum
+│
+└── frontend/                      # Svelte 5 Single-Page Application
+    ├── src/
+    │   ├── lib/
+    │   ├── App.svelte             # Main workspace container & Auth router
+    │   ├── ClientManager.svelte   # Client CRUD module
+    │   ├── OrderManager.svelte    # Order request module
+    │   ├── QuotationForm.svelte   # Line-item quotation calculator
+    │   ├── InvoiceManager.svelte   # Invoice generator & tax calculator
+    │   ├── PaymentStatus.svelte   # Payment tracking module
+    │   ├── OfficialReceipts.svelte# Official receipt issuer & previewer
+    │   └── main.ts
+    ├── package.json
+    └── vite.config.ts
