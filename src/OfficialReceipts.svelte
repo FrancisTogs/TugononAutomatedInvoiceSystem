@@ -22,7 +22,7 @@
       paymentMethod: 'Bank Transfer',
       referenceNo: 'TRN-9988231',
       paymentDate: '2026-09-18',
-      issuedBy: 'Chestere Eube'
+      issuedBy: 'Francis Virgilio Tugonon'
     },
     {
       receiptNo: 'OR-2026-002',
@@ -33,7 +33,7 @@
       paymentMethod: 'Check',
       referenceNo: 'CHK-004412',
       paymentDate: '2026-09-22',
-      issuedBy: 'Chestere Eube'
+      issuedBy: 'Francis Virgilio Tugonon'
     }
   ]);
 
